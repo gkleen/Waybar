@@ -111,6 +111,10 @@ void Workspaces::doUpdate() {
     } else {
       button.show();
     }
+
+    if (config_["ignore"].isArray() && !ws["is_active"].asBool())
+      if (std::find(config_["ignore"].begin(), config_["ignore"].end(), name) != config_["ignore"].end())
+        button.hide();
   }
 
   // Refresh the button order.
