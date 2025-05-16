@@ -67,6 +67,11 @@ void Workspaces::doUpdate() {
     else
       style_context->remove_class("active");
 
+    if (ws["is_urgent"].asBool())
+      style_context->add_class("urgent");
+    else
+      style_context->remove_class("urgent");
+
     if (ws["output"]) {
       if (ws["output"].asString() == bar_.output->name)
         style_context->add_class("current_output");
