@@ -202,6 +202,13 @@ void IPC::parseIPC(const std::string &line) {
       for (auto &win : windows_) {
         win["is_focused"] = focused && win["id"].asUInt64() == id;
       }
+    } else if (const auto &payload = ev["WorkspaceUrgencyChanged"]) {
+      const auto id = payload["id"].asUInt64();
+      const auto urgent = payload["urgent"].asBool();
+      auto it = std::find_if(workspaces_.begin(), workspaces_.end(),
+                             [id](auto &ws) { return ws["id"].asUInt64() == id; });
+      if (it != workspaces_.end())
+        (*it)["is_urgent"] = urgent;
     }
   }
 
