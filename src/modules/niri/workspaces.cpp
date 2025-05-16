@@ -20,6 +20,7 @@ Workspaces::Workspaces(const std::string &id, const Bar &bar, const Json::Value 
   gIPC->registerForIPC("WorkspacesChanged", this);
   gIPC->registerForIPC("WorkspaceActivated", this);
   gIPC->registerForIPC("WorkspaceActiveWindowChanged", this);
+  gIPC->registerForIPC("WorkspaceUrgencyChanged", this);
 
   dp.emit();
 }
